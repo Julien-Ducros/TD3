@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter= new com.example.td3.ListAdapter(input);
         recyclerView.setAdapter(mAdapter);
-        ;
+
     }
 
     @Override
@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
         PokeAPI pokeAPI = retrofit.create(PokeAPI.class);
 
-        Call<RestPokemonResponse> call = pokeAPI.getPokemonResponse();
-        call.enqueue(new Callback<RestPokemonResponse>() {
+        Call<RestPokemonResponse> call1 = pokeAPI.getPokemonResponse();
+        call1.enqueue(new Callback<RestPokemonResponse>() {
             @Override
             public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
