@@ -130,7 +130,30 @@ public class MainActivity extends AppCompatActivity {
                 showError();
             }
         });
+
+        Call<RestAbilityResponse> call = pokeAPI.getAbility();
+        call.enqueue(new Callback<RestAbilityResponse>() {
+            @Override
+            public void onResponse(Call<RestAbilityResponse> call, Response<RestAbilityResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+
+                    List<Ability> AbilityList = response.body().getResults();
+                    Toast.makeText(getApplicationContext(), "API Succes", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    showError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestAbilityResponse> call, Throwable t) {
+                showError();
+            }
+
+        });
     }
+
+
 
     private void showError() {
             Toast.makeText(getApplicationContext(),"API ERROR",Toast.LENGTH_SHORT).show();
